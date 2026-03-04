@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Football League - S309918</title>
+</head>
+<body>
+    <h1>Welcome to European Super League</h1>
+    <p>Student ID: S309918</p>
+    <hr>
+    <h2>Teams in the European Super League</h2>
+    <ul>
+        {% for club in clubs %}
+            <li><strong>{{ club.club_name }}</strong> - Coach: {{ club.coach_name }}</li>
+        {% empty %}
+            <li>No clubs added yet. Go to <a href="/admin">Admin Panel</a> to add.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
