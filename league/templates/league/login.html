@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Football League</title>
+</head>
+<body>
+    <h2>Welcome to European Super League Portal</h2>
+    <p>Please log in to access the system.</p>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Log In</button>
+    </form>
+</body>
+</html>

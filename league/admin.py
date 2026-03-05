@@ -1,11 +1,11 @@
 from django.contrib import admin
 
-from league.models import Clubs, Players, Matches, ClubSeasonStats, Profile
+from league.models import Club, Player, Match, ClubSeasonStat, Profile
 
 # Register your models here.
 
-admin.site.register(Clubs)
-admin.site.register(Players)
-admin.site.register(Matches)
-admin.site.register(ClubSeasonStats)
+admin.site.register(Club)
+admin.site.register(Player)
+admin.site.register(Match)
+admin.site.register(ClubSeasonStat)
 admin.site.register(Profile)

@@ -1,19 +1,48 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Football League - S309918</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - S309918</title>
 </head>
 <body>
-    <h1>Welcome to European Super League</h1>
-    <p>Student ID: S309918</p>
+    <header>
+        <h1>European Super League </h1>
+        <p>Logged in as: <strong>{{ user.username }}</strong>
+            <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" style="background:none; border:none; color:blue; text-decoration:underline; cursor:pointer; padding:0; font-size:16px;">
+                    Log out
+                </button>
+            </form>
+        </p>
+
+        <nav style="margin-bottom: 20px;">
+            {% if user.is_superuser %}
+                <h3>Admin Controls</h3>
+                <a href="/admin/league/club/"><button>Add/Update Clubs</button></a>
+            {% else %}
+                <h3>Menu</h3>
+                <a href="{% url 'assign_favourite' %}"><button>Assign Favourite Club</button></a>
+            {% endif %}
+        </nav>
+    </header>
+
     <hr>
-    <h2>Teams in the European Super League</h2>
+
+<main>
+    <h2>Clubs in the League</h2>
     <ul>
-        {% for club in clubs %}
-            <li><strong>{{ club.club_name }}</strong> - Coach: {{ club.coach_name }}</li>
+        {% for club in club %}
+            <li>
+                <strong>{{ club.club_name }}</strong> - Coach: {{ club.coach_name }}
+            </li>
         {% empty %}
-            <li>No clubs added yet. Go to <a href="/admin">Admin Panel</a> to add.</li>
+            <li>No clubs added yet. Go to Admin to add.</li>
         {% endfor %}
     </ul>
+</main>
+
+    <hr>
 </body>
 </html>
