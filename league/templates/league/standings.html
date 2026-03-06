@@ -1,0 +1,62 @@
+{% extends 'league/base.html' %}
+
+{% block title %}Standings{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title text-left">European Super League Standings</h2>
+                <p class="category text-info text-left">Current league table and statistics</p>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="text-primary">
+                            <tr>
+                                <th>Club Name</th>
+                                <th class="text-center">MP</th>
+                                <th class="text-center">W</th>
+                                <th class="text-center">D</th>
+                                <th class="text-center">L</th>
+                                <th class="text-center">GS</th>
+                                <th class="text-center">GA</th>
+                                <th class="text-center">GD</th>
+                                <th class="text-center text-info">Pts</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for c in all_clubs %}
+                            <tr>
+                                <td><strong>{{ c.club_name }}</strong></td>
+                                <td class="text-center">{{ c.clubseasonstat.matches_played }}</td>
+                                <td class="text-center">{{ c.clubseasonstat.wins }}</td>
+                                <td class="text-center">{{ c.clubseasonstat.draws }}</td>
+                                <td class="text-center">{{ c.clubseasonstat.losses }}</td>
+                                <td class="text-center">{{ c.clubseasonstat.goals_scored }}</td>
+                                <td class="text-center">{{ c.clubseasonstat.goals_against }}</td>
+                                <td class="text-center">{{ c.clubseasonstat.goal_difference }}</td>
+                                <td class="text-center text-info"><strong>{{ c.clubseasonstat.points }}</strong></td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="9" class="text-center">No club data available.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <hr class="mt-5">
+
+                <div class="text-center">
+                    <a href="{% url 'home' %}" class="btn btn-default btn-sm d-block mx-auto mt-2" style="width: 200px;">
+                        Back to Home
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

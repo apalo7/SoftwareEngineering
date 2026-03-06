@@ -1,48 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - S309918</title>
-</head>
-<body>
-    <header>
-        <h1>European Super League </h1>
-        <p>Logged in as: <strong>{{ user.username }}</strong>
-            <form action="{% url 'logout' %}" method="post" style="display:inline;">
+{% extends 'league/base.html' %}
+
+{% block title %}League Home{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <h1 class="card-title">European Super League </h1>
+
+        <div>
+            <p>Logged in as: <strong class="text-info">{{ user.username }}</strong></p>
+
+            <form action="{% url 'logout' %}" method="post">
                 {% csrf_token %}
-                <button type="submit" style="background:none; border:none; color:blue; text-decoration:underline; cursor:pointer; padding:0; font-size:16px;">
-                    Log out
-                </button>
+                <button type="submit" class="btn btn-danger btn-sm">Logout</button>
             </form>
-        </p>
+        </div>
 
-        <nav style="margin-bottom: 20px;">
-            {% if user.is_superuser %}
-                <h3>Admin Controls</h3>
-                <a href="/admin/league/club/"><button>Add/Update Clubs</button></a>
+        <hr>
+
+        {% if user.is_superuser %}
+            <h3 class="text-warning">ADMIN</h3>
+            <p><a href="{% url 'transfer_center' %}" class="btn btn-warning">Transfer a Player</a></p>
+        {% else %}
+            <h3 class="text-success">USER</h3>
+
+            {% if user.profile.favourite_club %}
+                <p>Your Favourite Club: <strong class="text-info">{{ user.profile.favourite_club.club_name }}</strong></p>
             {% else %}
-                <h3>Menu</h3>
-                <a href="{% url 'assign_favourite' %}"><button>Assign Favourite Club</button></a>
+                <p class="text-muted">You have not selected a favourite club yet.</p>
             {% endif %}
-        </nav>
-    </header>
 
-    <hr>
+            <p><a href="{% url 'assign_favourite' %}" class="btn btn-info">Assign/Change Favourite Club</a></p>
+        {% endif %}
 
-<main>
-    <h2>Clubs in the League</h2>
-    <ul>
-        {% for club in club %}
-            <li>
-                <strong>{{ club.club_name }}</strong> - Coach: {{ club.coach_name }}
-            </li>
-        {% empty %}
-            <li>No clubs added yet. Go to Admin to add.</li>
-        {% endfor %}
-    </ul>
-</main>
+        <hr>
 
-    <hr>
-</body>
-</html>
+        <h3>Matches</h3>
+        <p><a href="{% url 'match_results' %}" class="btn btn-primary">View Results</a></p>
+
+        <hr>
+
+        <h3>Standings</h3>
+        <p><a href="{% url 'standings' %}" class="btn btn-success">View Standings</a></p>
+
+        <hr>
+
+        <h3>Clubs</h3>
+        <p><a href="{% url 'club_list' %}" class="btn btn-info">View Clubs</a></p>
+
+        <hr>
+
+        <h3>Players</h3>
+        <p><a href="{% url 'player_list' %}" class="btn btn-default">View Players</a></p>
+
+        <hr>
+    </div>
+</div>
+{% endblock %}

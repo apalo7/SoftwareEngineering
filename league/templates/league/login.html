@@ -1,17 +1,59 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Login - Football League</title>
-</head>
-<body>
-    <h2>Welcome to European Super League Portal</h2>
-    <p>Please log in to access the system.</p>
+    <meta charset="utf-8" />
+    <title>European Super League - Login</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
+    <link href="{% static 'assets/css/black-dashboard.css' %}" rel="stylesheet" />
 
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Log In</button>
-    </form>
+    <style>
+        input[type="text"], input[type="password"], input[type="email"] {
+            background-color: #27293d !important;
+            border: 1px solid #2b3553 !important;
+            color: #ffffff !important;
+            padding: 10px !important;
+            width: 100% !important;
+            border-radius: 0.4285rem !important;
+            margin-bottom: 15px !important;
+        }
+        label {
+            color: rgba(255, 255, 255, 0.6) !important;
+            font-weight: 300;
+        }
+        .card-login {
+            padding: 20px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body class="dark-edition" style="background-color: #1e1e2f;">
+
+    <div class="container" style="margin-top: 10%;">
+        <div class="row">
+            <div class="col-md-5 ml-auto mr-auto">
+                <div class="card card-login">
+                    <div class="card-body">
+                        <p class="text-info text-left mb-4" style="letter-spacing: 2px; font-weight: 600;">WELCOME TO EUROPEAN SUPER LEAGUE</p>
+
+                        <form method="post">
+                            {% csrf_token %}
+
+                            <div class="form-content">
+                                {{ form.as_p }}
+                            </div>
+
+                            <div class="mt-4 text-center">
+                                <button type="submit" class="btn btn-primary btn-fill" style="width: 100%;">
+                                    Login
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                </div>
+        </div>
+    </div>
+
 </body>
 </html>

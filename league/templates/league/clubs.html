@@ -1,0 +1,54 @@
+{% extends 'league/base.html' %}
+
+{% block title %}League Clubs{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title text-left">European Super League Clubs</h2>
+                <p class="category text-info text-left">Detailed information about registered clubs</p>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="text-primary">
+                            <tr>
+                                <th>Club Name</th>
+                                <th>Foundation Year</th>
+                                <th>Club Colours</th>
+                                <th>Coach Name</th>
+                                <th>Stadium Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for c in all_clubs %}
+                            <tr>
+                                <td><strong>{{ c.club_name }}</strong></td>
+                                <td>{{ c.foundation_year }}</td>
+                                <td>{{ c.club_colours }}</td>
+                                <td>{{ c.coach_name }}</td>
+                                <td>{{ c.stadium_name }}</td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="5" class="text-center">No clubs registered yet.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <hr class="mt-5">
+
+                <div class="text-center">
+                    <a href="{% url 'home' %}" class="btn btn-default btn-sm d-block mx-auto mt-2" style="width: 200px;">
+                        Back to Home
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

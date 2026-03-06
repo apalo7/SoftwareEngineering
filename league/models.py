@@ -8,6 +8,7 @@ class Club(models.Model):
     foundation_year = models.IntegerField()
     club_colours = models.CharField(max_length=100)
     coach_name = models.CharField(max_length=100)
+    stadium_name = models.CharField(max_length=100)
 
     def __str__(self):
         return self.club_name
@@ -17,8 +18,10 @@ class Player(models.Model):
     club = models.ForeignKey(Club, on_delete=models.CASCADE, related_name='players')
     player_name = models.CharField(max_length=100)
     date_of_birth = models.DateField()
+    nationality = models.CharField(max_length=50, default='Unknown')
     position = models.CharField(max_length=100)
     market_value = models.BigIntegerField()
+
 
     def __str__(self):
         return self.player_name

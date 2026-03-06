@@ -1,0 +1,56 @@
+{% extends 'league/base.html' %}
+
+{% block title %}Match Results{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title text-left">European Super League Match Results</h2>
+                <p class="category text-info text-left">Latest scores from the European Super League</p>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="text-primary">
+                            <tr>
+                                <th>Home Team</th>
+                                <th class="text-center">Score</th>
+                                <th>Away Team</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for match in match %}
+                            <tr>
+                                <td><strong>{{ match.home_team.club_name }}</strong></td>
+                                <td class="text-center">
+                                    <span class="badge badge-info p-2" style="font-size: 1rem;">
+                                        {{ match.home_score }} - {{ match.away_score }}
+                                    </span>
+                                </td>
+                                <td><strong>{{ match.away_team.club_name }}</strong></td>
+                                <td>{{ match.match_date|date:"d M Y" }}</td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="4" class="text-center">No matches played yet.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <hr class="mt-5">
+
+                <div class="text-center">
+                    <a href="{% url 'home' %}" class="btn btn-default btn-sm d-block mx-auto mt-2" style="width: 200px;">
+                        Back to Home
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

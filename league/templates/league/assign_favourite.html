@@ -1,0 +1,45 @@
+{% extends 'league/base.html' %}
+
+{% block title %}Assign Favourite Club{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 ml-auto mr-auto">
+        <div class="card">
+            <div class="card-header text-left">
+                <h2 class="card-title">Select Your Favourite Club</h2>
+                <p class="category text-info">Choose a club to follow from the league</p>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                        <label class="text-primary" style="font-size: 1.1rem;" for="club">Choose a club from the league:</label>
+                        <select name="club_id" id="club" class="form-control" style="background-color: #27293d; color: white;" required>
+                            <option value="">-- Please Select --</option>
+                            {% for c in all_clubs %}
+                                <option value="{{ c.id }}">{{ c.club_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="mt-4 text-center">
+                        <button type="submit" class="btn btn-fill btn-primary" style="width: 250px;">
+                            Save Selection
+                        </button>
+                    </div>
+                </form>
+
+                <hr class="mt-5">
+
+                <div class="text-center">
+                    <a href="{% url 'home' %}" class="btn btn-default btn-sm d-block mx-auto mt-2" style="width: 200px;">
+                        Back to Home
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

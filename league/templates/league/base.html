@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>European Super League - {% block title %}{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
+    <link href="{% static 'assets/css/black-dashboard.css' %}" rel="stylesheet" />
+
+    <style>
+        .main-panel {
+            width: 100% !important;
+            float: none !important;
+        }
+        .content {
+            padding: 30px 15px !important;
+        }
+    </style>
+</head>
+<body class="dark-edition">
+    <div class="wrapper">
+        <div class="main-panel">
+            <div class="content">
+                <div class="container-fluid">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
