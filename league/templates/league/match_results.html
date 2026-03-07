@@ -24,13 +24,13 @@
                         <tbody>
                             {% for match in match %}
                             <tr>
-                                <td><strong>{{ match.home_team.club_name }}</strong></td>
+                                <td><strong>{{ match.home_club.club_name }}</strong></td>
                                 <td class="text-center">
                                     <span class="badge badge-info p-2" style="font-size: 1rem;">
                                         {{ match.home_score }} - {{ match.away_score }}
                                     </span>
                                 </td>
-                                <td><strong>{{ match.away_team.club_name }}</strong></td>
+                                <td><strong>{{ match.away_club.club_name }}</strong></td>
                                 <td>{{ match.match_date|date:"d M Y" }}</td>
                             </tr>
                             {% empty %}

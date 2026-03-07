@@ -5,7 +5,7 @@
 {% block content %}
 <div class="card">
     <div class="card-body">
-        <h1 class="card-title">European Super League </h1>
+        <h1 class="card-title text-left">European Super League</h1>
 
         <div>
             <p>Logged in as: <strong class="text-info">{{ user.username }}</strong></p>
@@ -24,8 +24,8 @@
         {% else %}
             <h3 class="text-success">USER</h3>
 
-            {% if user.profile.favourite_club %}
-                <p>Your Favourite Club: <strong class="text-info">{{ user.profile.favourite_club.club_name }}</strong></p>
+            {% if user.profile.favourite_club.all %}
+                <p>Your Favourite Club: <strong class="text-info">{{ user.profile.favourite_club.all.0.club_name }}</strong></p>
             {% else %}
                 <p class="text-muted">You have not selected a favourite club yet.</p>
             {% endif %}
