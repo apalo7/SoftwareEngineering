@@ -34,7 +34,7 @@ def match_results(request):
 
 @login_required(login_url='/login/')
 def league_standings(request):
-    all_clubs = Club.objects.all()
+    all_clubs = Club.objects.all().order_by('-clubseasonstat__points', '-clubseasonstat__goal_difference')
     return render(request, 'league/standings.html', {'all_clubs': all_clubs})
 
 @login_required(login_url='/login/')
